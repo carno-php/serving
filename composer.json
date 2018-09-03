@@ -1,0 +1,22 @@
+{
+  "name": "carno-php/serving",
+  "license": "MIT",
+  "require": {
+    "carno-php/console": "^1.0",
+    "carno-php/process": "^1.0",
+    "carno-php/config": "^1.0",
+    "carno-php/serv": "^1.0",
+    "carno-php/env": "^1.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Carno\\Serving\\": "src"
+    }
+  },
+  "minimum-stability": "dev",
+  "extra": {
+    "branch-alias": {
+      "dev-master": "1.0-dev"
+    }
+  }
+}
