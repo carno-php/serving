@@ -3,6 +3,7 @@
   "license": "MIT",
   "require": {
     "carno-php/console": "^1.0",
+    "carno-php/cluster": "^1.0",
     "carno-php/process": "^1.0",
     "carno-php/config": "^1.0",
     "carno-php/serv": "^1.0",
