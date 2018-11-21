@@ -28,7 +28,6 @@ class Naming extends Component implements Bootable
         // check exists
 
         if ($app->name()) {
-            // use exists
             return;
         }
 
@@ -37,6 +36,16 @@ class Naming extends Component implements Bootable
         if (null !== $name = env('APP_NAME')) {
             $app->named($name);
             return;
+        }
+
+        // get from composer.json
+
+        if (defined('CWD') && is_file($f = CWD . '/composer.json')) {
+            $cj = json_decode(file_get_contents($f), true);
+            if ($cj && $cn = $cj['name'] ?? false) {
+                $app->named(str_replace(['-', '/'], '.', $cn));
+                return;
+            }
         }
 
         // use default
