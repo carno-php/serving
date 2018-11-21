@@ -31,17 +31,19 @@ class Logging extends Component implements Bootable
      */
     public function starting(Application $app) : void
     {
-        if ($app->input()->hasOption(Options::SERVICE_TAGS)) {
-            $tags = $app->input()->getOption(Options::SERVICE_TAGS);
-        }
-
-        DI::set(Environment::class, $e = new Environment($app->name(), $tags ?? ''));
+        $tags = $app->input()->hasOption(Options::SERVICE_TAGS)
+            ? $app->input()->getOption(Options::SERVICE_TAGS)
+            : ''
+        ;
 
         DI::set(Connections::class, $c = new Connections);
 
-        Instances::configuration(new Configure($e, $c));
+        $app->starting()->add(static function () use ($c, $app, $tags) {
+            DI::set(Environment::class, $e = new Environment($app->name(), $tags));
+            Instances::reload(new Configure($e, $c));
+        });
 
-        $app->stopping()->add(function () use ($c) {
+        $app->stopping()->add(static function () use ($c) {
             return $c->release();
         });
     }
