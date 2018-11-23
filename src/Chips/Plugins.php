@@ -21,6 +21,8 @@ trait Plugins
         foreach ($plugins as $plugin) {
             if ($plugin->enabled()) {
                 $plugin->hooking($this->events());
+            } else {
+                logger('serving')->info('Plugin not enabled', ['com' => get_class($plugin)]);
             }
         }
 
