@@ -26,9 +26,10 @@ interface Shared
 
         Runtime\ActiveGC::class,
 
+        Discovery\Classify::class,
+        Discovery\Assigning::class,
+        Discovery\Resourced::class,
         Discovery\Consul::class,
-        Discovery\Initialize::class,
-        Discovery\Clustered::class,
 
         Monitor\Daemons::class,
         Monitor\Runtime::class,

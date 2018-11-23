@@ -54,7 +54,7 @@ class Consul extends Component implements Bootable
 
         // .. TAGGING
 
-        $tags = $app->input()->getOption(Options::SERVICE_TAGS);
+        $tags = $app->input()->getOption(Options::IDENTITY_TAGS);
 
         DI::set(Tagging::class, new Tagging(...($tags ? explode(',', $tags) : Tags::DEFAULT)));
     }

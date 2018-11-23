@@ -19,8 +19,12 @@ trait Discovery
      */
     protected function optionsRD(Configure $conf) : void
     {
-        $conf->addOption(Options::DISCOVER_MODE, null, InputOption::VALUE_REQUIRED, 'Cluster mode', 'consul');
+        // phpcs:ignore Generic.Files.LineLength.TooLong
+        $conf->addOption(Options::RESOURCE_DISCOVERY, null, InputOption::VALUE_REQUIRED, 'Resource discovery', 'config');
+        $conf->addOption(Options::SERVICE_DISCOVERY, null, InputOption::VALUE_REQUIRED, 'Service discovery', 'consul');
+        $conf->addOption(Options::IDENTITY_TAGS, null, InputOption::VALUE_OPTIONAL, 'Cluster identity tags', '');
         $conf->addOption(Options::CONSUL_AGENT, null, InputOption::VALUE_OPTIONAL, 'Consul agent', '127.0.0.1:8500');
-        $conf->addOption(Options::SERVICE_TAGS, null, InputOption::VALUE_OPTIONAL, 'Identify tags', '');
+        $conf->addOption(Options::CONSUL_CONF, null, InputOption::VALUE_OPTIONAL, 'Consul conf', 'service/conf');
+        $conf->addOption(Options::CONSUL_DSN, null, InputOption::VALUE_OPTIONAL, 'Consul dsn', 'service/dsn');
     }
 }

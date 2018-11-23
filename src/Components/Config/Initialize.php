@@ -11,6 +11,7 @@ namespace Carno\Serving\Components\Config;
 use Carno\Console\Component;
 use Carno\Console\Contracts\Application;
 use Carno\Console\Contracts\Bootable;
+use Carno\Serving\Contracts\ScopedConf;
 
 class Initialize extends Component implements Bootable
 {
@@ -28,6 +29,6 @@ class Initialize extends Component implements Bootable
         config()->assigned($app->name());
 
         // make "global" as upstream of default config
-        config()->joining(config('global'));
+        config()->joining(config(ScopedConf::GLOBAL));
     }
 }

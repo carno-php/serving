@@ -21,8 +21,13 @@ interface Options
     public const LISTEN = 'listen';
     public const WORKERS = 'workers';
 
-    // service discovery
-    public const DISCOVER_MODE = 'discover-mode';
+    // cluster discovery
+    public const RESOURCE_DISCOVERY = 'resource-dsv';
+    public const SERVICE_DISCOVERY = 'service-dsv';
+    public const IDENTITY_TAGS = 'tags';
+
+    // consul related options
     public const CONSUL_AGENT = 'consul-agent';
-    public const SERVICE_TAGS = 'tags';
+    public const CONSUL_CONF = 'consul-conf';
+    public const CONSUL_DSN = 'consul-dsn';
 }

@@ -31,8 +31,8 @@ class Logging extends Component implements Bootable
      */
     public function starting(Application $app) : void
     {
-        $tags = $app->input()->hasOption(Options::SERVICE_TAGS)
-            ? $app->input()->getOption(Options::SERVICE_TAGS)
+        $tags = $app->input()->hasOption(Options::IDENTITY_TAGS)
+            ? $app->input()->getOption(Options::IDENTITY_TAGS)
             : ''
         ;
 
