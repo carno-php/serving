@@ -32,14 +32,18 @@ class Daemons extends Component implements Bootable
     {
         $args = $app->input();
 
-        // create default daemon
+        $listener = $gateway = null;
+
         if ($args->hasOption(Options::METRICS_PORT) && $port = $args->getOption(Options::METRICS_PORT)) {
-            (new Daemon(
-                $app->name(),
-                new Address(sprintf(':%d', $port)),
-                new Address($args->hasOption(Options::METRICS_GATE) ? $args->getOption(Options::METRICS_GATE) : '')
-            ))->fork();
+            $listener = new Address(sprintf(':%d', $port));
         }
+
+        if ($args->hasOption(Options::METRICS_GATE) && $gate = $args->getOption(Options::METRICS_GATE)) {
+            $gateway = new Address($gate);
+        }
+
+        // trying create default daemon
+        ($listener || $gateway) && (new Daemon($app->name(), $listener, $gateway))->fork();
 
         $app->starting()->add(static function () {
             /**

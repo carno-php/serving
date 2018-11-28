@@ -19,7 +19,7 @@ trait Metrics
      */
     protected function optionsME(Configure $conf) : void
     {
-        $conf->addOption(Options::METRICS_PORT, null, InputOption::VALUE_OPTIONAL, 'Port of metrics exporter', 9102);
+        $conf->addOption(Options::METRICS_PORT, null, InputOption::VALUE_OPTIONAL, 'Port of metrics exporter', '');
         $conf->addOption(Options::METRICS_GATE, null, InputOption::VALUE_OPTIONAL, 'Address of metrics gateway', '');
     }
 }
