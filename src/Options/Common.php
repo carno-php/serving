@@ -14,6 +14,8 @@ use Symfony\Component\Console\Input\InputOption;
 
 trait Common
 {
+    use Extensional;
+
     /**
      * @param Configure $conf
      */
