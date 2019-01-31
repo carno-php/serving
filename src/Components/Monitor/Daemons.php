@@ -21,6 +21,11 @@ use Carno\Serving\Contracts\Options;
 class Daemons extends Component implements Bootable
 {
     /**
+     * @var int
+     */
+    protected $priority = 90;
+
+    /**
      * @var array
      */
     protected $prerequisites = [Daemon::class];

@@ -49,7 +49,7 @@ class Managed
         $plugins = [];
 
         foreach ($this->extensions as $ext) {
-            array_push($plugins, ...$ext->plugins($boot)->list());
+            ($more = $ext->plugins($boot)->list()) && array_push($plugins, ...$more);
         }
 
         return $plugins;
@@ -63,7 +63,7 @@ class Managed
         $mods = [];
 
         foreach ($this->extensions as $ext) {
-            array_push($mods, ...$ext->components()->list());
+            ($more = $ext->components()->list()) && array_push($mods, ...$more);
         }
 
         return $mods;

@@ -20,7 +20,7 @@ trait Plugins
     public function plugins(Plugined ...$plugins) : self
     {
         if ($this->bootstrap ?? null) {
-            array_push($plugins, ...Managed::keeper()->plugins($this->bootstrap));
+            ($more = Managed::keeper()->plugins($this->bootstrap)) && array_push($plugins, ...$more);
         }
 
         foreach ($plugins as $plugin) {
