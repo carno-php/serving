@@ -11,5 +11,6 @@ namespace Carno\Serving\Contracts;
 interface ScopedConf
 {
     public const COM = 'global';
+    public const SRV = 'conf:scoped:srv';
     public const DSN = 'conf:scoped:dsn';
 }
