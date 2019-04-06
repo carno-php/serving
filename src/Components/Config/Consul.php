@@ -36,7 +36,7 @@ class Consul extends Component implements Bootable
 
         $configures = [
             [config(), $conf],
-            [config(ScopedConf::GLOBAL), $conf],
+            [config(ScopedConf::COM), $conf],
             [config(ScopedConf::DSN)->assigned(''), $dsn],
         ];
 

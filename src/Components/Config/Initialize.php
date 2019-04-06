@@ -29,6 +29,6 @@ class Initialize extends Component implements Bootable
         config()->assigned($app->name());
 
         // make "global" as upstream of default config
-        config()->joining(config(ScopedConf::GLOBAL));
+        config()->joining(config(ScopedConf::COM));
     }
 }

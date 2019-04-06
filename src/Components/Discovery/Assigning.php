@@ -69,7 +69,7 @@ class Assigning extends Component implements Bootable
                                 $source = config(ScopedConf::DSN);
                                 break;
                             case Scenes::SERVICE:
-                                $source = config(ScopedConf::GLOBAL);
+                                $source = config(ScopedConf::COM);
                                 break;
                         }
                         return new Config($source ?? config());
