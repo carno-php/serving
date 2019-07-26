@@ -14,7 +14,8 @@ use Carno\Cluster\Discovery\Adaptors\Config;
 use Carno\Cluster\Discovery\Adaptors\Consul;
 use Carno\Cluster\Discovery\Adaptors\DNS;
 use Carno\Cluster\Discovery\Discovered;
-use Carno\Config\Config as Conf;
+use function Carno\Config\conf;
+use Carno\Config\Config as Source;
 use Carno\Console\Component;
 use Carno\Console\Contracts\Application;
 use Carno\Console\Contracts\Bootable;
@@ -63,16 +64,16 @@ class Assigning extends Component implements Bootable
         if ($app->input()->hasOption($option)) {
             switch ($app->input()->getOption($option)) {
                 case 'config':
-                    $dsv = $this->discovered('config', Conf::class, static function (string $scene) {
+                    $dsv = $this->discovered('config', Source::class, static function (string $scene) {
                         switch ($scene) {
                             case Scenes::RESOURCE:
-                                $source = config(ScopedConf::DSN);
+                                $source = conf(ScopedConf::DSN);
                                 break;
                             case Scenes::SERVICE:
-                                $source = config(ScopedConf::SRV);
+                                $source = conf(ScopedConf::SRV);
                                 break;
                         }
-                        return new Config($source ?? config());
+                        return new Config($source ?? conf());
                     }, $scene);
                     break;
                 case 'consul':
@@ -82,11 +83,11 @@ class Assigning extends Component implements Bootable
                     break;
                 case 'dns':
                     $dsv = $this->discovered('dns', Result::class, static function () {
-                        return new DNS;
+                        return new DNS();
                     });
                     break;
                 default:
-                    throw new UnknownDiscoveryException;
+                    throw new UnknownDiscoveryException();
             }
 
             $dsv && $classifier->assigning($scene, $dsv);
@@ -108,6 +109,6 @@ class Assigning extends Component implements Bootable
 
         logger('serving')->warning('Discovery driver not provided', ['adaptor' => $named]);
 
-        throw new UnavailableDiscoveryException;
+        throw new UnavailableDiscoveryException();
     }
 }

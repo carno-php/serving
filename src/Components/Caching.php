@@ -27,8 +27,8 @@ class Caching extends Component implements Bootable
      */
     public function starting(Application $app) : void
     {
-        DI::set(Eviction::class, $eviction = new Eviction);
-        DI::set(Refreshing::class, $refresher = new Refreshing);
+        DI::set(Eviction::class, $eviction = new Eviction());
+        DI::set(Refreshing::class, $refresher = new Refreshing());
 
         $app->stopping()->add(static function () use ($eviction, $refresher) {
             $eviction->shutdown();

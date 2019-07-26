@@ -47,7 +47,7 @@ class Consul extends Component implements Bootable
         $port = parse_url($consul, PHP_URL_PORT);
 
         if (empty($host)) {
-            throw new InvalidConsulAgentException;
+            throw new InvalidConsulAgentException();
         }
 
         DI::set(Agent::class, new Agent($host, $port ?: 8500));

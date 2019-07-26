@@ -33,7 +33,7 @@ class Runtime extends Component implements Bootable
     {
         $app->starting()->add(function () {
             // default monitor of program status like memory and etc
-            new ProgramStatus;
+            new ProgramStatus();
 
             // monitor of coroutine & promises
             Ticker::new([

@@ -32,6 +32,6 @@ class Classify extends Component implements Bootable
      */
     public function starting(Application $app) : void
     {
-        DI::set(Classified::class, new Selector);
+        DI::set(Classified::class, new Selector());
     }
 }

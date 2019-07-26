@@ -22,6 +22,6 @@ trait Events
      */
     public function events() : NETEvs
     {
-        return $this->evm ?? $this->evm = new NETEvs;
+        return $this->evm ?? $this->evm = new NETEvs();
     }
 }

@@ -8,6 +8,7 @@
 
 namespace Carno\Serving\Components\Config;
 
+use function Carno\Config\conf;
 use Carno\Config\Loaders\Consul as Loader;
 use Carno\Console\Component;
 use Carno\Console\Contracts\Application;
@@ -35,9 +36,9 @@ class Consul extends Component implements Bootable
         $dsn = $app->input()->getOption(Options::CONSUL_DSN);
 
         $configures = [
-            [config(), $conf],
-            [config(ScopedConf::COM), $conf],
-            [config(ScopedConf::DSN)->assigned(''), $dsn],
+            [conf(), $conf],
+            [conf(ScopedConf::COM), $conf],
+            [conf(ScopedConf::DSN)->assigned(''), $dsn],
         ];
 
         $this->initializing($app, ...$configures);

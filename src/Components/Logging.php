@@ -36,11 +36,11 @@ class Logging extends Component implements Bootable
             : ''
         ;
 
-        DI::set(Connections::class, $c = new Connections);
+        DI::set(Connections::class, $c = new Connections());
 
         $app->starting()->add(static function () use ($c, $app, $tags) {
             DI::set(Environment::class, $e = new Environment($app->name(), $tags));
-            Instances::reload(new Configure($e, $c));
+            Instances::reload(new Configure($app->conf(), $e, $c));
         });
 
         $app->stopping()->add(static function () use ($c) {

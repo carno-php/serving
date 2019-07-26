@@ -29,7 +29,7 @@ trait GKeeper
 
         foreach (get_defined_constants(true)['user'] ?? [] as $name => $value) {
             if (substr($name, 5, 16) === '_SERV_EXTENSION_') {
-                $mgr->load(new $value);
+                $mgr->load(new $value());
             }
         }
 
